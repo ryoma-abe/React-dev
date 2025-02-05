@@ -1,2 +1,6 @@
 const val = "val1";
-console.log(val);
+const name = 31;
+
+
+console.log(`${val}の年齢は${name}です`);
+
