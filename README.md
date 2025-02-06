@@ -23,3 +23,14 @@ console.log(age); // 21
 
 - `name` は元のオブジェクトの値を取得
 - `age` はオブジェクトに存在しないため、デフォルト値の 21 が適用されます
+
+##　オブジェクトの省略記法
+
+```
+const name = "abe";
+const age = 21;
+
+const myProfile = { name, age };
+console.log(myProfile);
+
+```

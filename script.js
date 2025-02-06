@@ -1,10 +1,5 @@
-const sayHello = (name = "じゃけえ") => console.log(`私の名前は${name}です。`);
-sayHello();
+const name = "abe";
+const age = 21;
 
-const myProfile = {
-  name: "安部",
-};
-
-const { name, age = 21 } = myProfile;
-console.log(name);
-console.log(age);
+const myProfile = { name, age };
+console.log(myProfile);
