@@ -1,6 +1,3 @@
-const nameArr = ["田中", "山田", "じゃけえ"];
-const newArr = nameArr
-  .filter((name) => name !== "じゃけえ")
-  .map((name) => name + "さん");
+//ある条件 ? 条件がtrueのとき : 条件がfalseのとき
+const val1 = 1 > 0 ? "trueです" : "falseです";
 
-console.log(newArr);
