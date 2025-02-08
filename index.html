@@ -1,18 +1,156 @@
+<!-- HTML -->
 <!DOCTYPE html>
 <html lang="ja">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
-    <title>js練習</title>
+    <title>TODOアプリ</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <main>
+    <div class="container">
+        <!-- 入力エリア -->
+        <div class="input-area">
+            <input type="text" placeholder="aaaaaa" class="todo-input">
+            <button class="add-button">追加</button>
+        </div>
 
-    </main>
-    <script src="./script.js"></script>
+        <!-- 未完了のTODO -->
+        <div class="incomplete-area">
+            <h2>未完了のTODO</h2>
+            <ul class="todo-list">
+                <li class="todo-item">
+                    <span>✈ TODOです</span>
+                    <button class="complete-button">完了</button>
+                    <button class="delete-button">削除</button>
+                </li>
+                <li class="todo-item">
+                    <span>• TODOです</span>
+                    <button class="complete-button">完了</button>
+                    <button class="delete-button">削除</button>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 完了したTODO -->
+        <div class="complete-area">
+            <h2>完了のTODO</h2>
+            <ul class="todo-list">
+                <li class="todo-item">
+                    <span>• TODOでした</span>
+                    <button class="return-button">戻す</button>
+                </li>
+                <li class="todo-item">
+                    <span>• TODOでした</span>
+                    <button class="return-button">戻す</button>
+                </li>
+            </ul>
+        </div>
+    </div>
 </body>
 
 </html>
+
+<style>
+    .container {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 0 20px;
+        font-family: sans-serif;
+    }
+
+    .input-area {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    .todo-input {
+        flex: 1;
+        padding: 8px 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+
+    .add-button {
+        padding: 8px 16px;
+        background-color: white;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .add-button:hover {
+        background-color: #f5f5f5;
+    }
+
+    .incomplete-area,
+    .complete-area {
+        padding: 20px;
+        border-radius: 4px;
+        margin-bottom: 20px;
+    }
+
+    .incomplete-area {
+        background-color: white;
+        border: 1px solid #ccc;
+    }
+
+    .complete-area {
+        background-color: #e6f4f1;
+        border: 1px solid #b2e0d9;
+    }
+
+    h2 {
+        margin: 0 0 15px 0;
+        font-size: 18px;
+    }
+
+    .todo-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .todo-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 12px;
+    }
+
+    .todo-item:last-child {
+        margin-bottom: 0;
+    }
+
+    .complete-button,
+    .delete-button,
+    .return-button {
+        padding: 4px 12px;
+        border-radius: 4px;
+        border: none;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+    .complete-button,
+    .delete-button {
+        background-color: #f5f5f5;
+    }
+
+    .return-button {
+        background-color: white;
+    }
+
+    .complete-button:hover,
+    .delete-button:hover {
+        background-color: #e8e8e8;
+    }
+
+    .return-button:hover {
+        background-color: #f5f5f5;
+    }
+</style>
