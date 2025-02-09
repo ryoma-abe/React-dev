@@ -3,6 +3,7 @@ const addInput = document.querySelector("#add-input");
 const todoList = document.querySelector("#todo-list");
 const deleteBtns = document.querySelectorAll(".delete-button");
 const completeBtns = document.querySelectorAll(".complete-button");
+const completeTodo = document.querySelector("#complete-todo");
 
 // 追加ボタンの処理
 const onClickAdd = () => {
@@ -37,4 +38,25 @@ const onClickDelete = function () {
 
 deleteBtns.forEach((deleteBtn) => {
   deleteBtn.addEventListener("click", onClickDelete);
+});
+
+// 完了ボタンの処理
+const onClickComplete = function () {
+  const parent = this.parentNode;
+  const deleteButton = parent.querySelector(".delete-button");
+  const completeButton = parent.querySelector(".complete-button");
+  parent.remove();
+  completeTodo.appendChild(parent);
+  parent.removeChild(deleteButton);
+  parent.removeChild(completeButton);
+  const createReturn = document.createElement("button");
+  createReturn.className = "return-button";
+  createReturn.innerHTML = "戻す";
+  parent.appendChild(createReturn);
+  if (todoList.children.length === 0) {
+    todoList.remove();
+  }
+};
+completeBtns.forEach((completeBtn) => {
+  completeBtn.addEventListener("click", onClickComplete);
 });
