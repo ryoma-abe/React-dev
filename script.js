@@ -22,6 +22,12 @@ const onClickAdd = () => {
   createLi.append(createSpan, createComplete, createDelete);
 
   todoList.appendChild(createLi);
+  createLi
+    .querySelector(".delete-button")
+    .addEventListener("click", onClickDelete);
+  createLi
+    .querySelector(".complete-button")
+    .addEventListener("click", onClickComplete);
 };
 addBtn.addEventListener("click", () => {
   onClickAdd();
