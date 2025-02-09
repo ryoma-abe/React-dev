@@ -2,6 +2,7 @@ const addBtn = document.querySelector("#add-btn");
 const addInput = document.querySelector("#add-input");
 const todoList = document.querySelector("#todo-list");
 
+// 追加ボタンの処理
 const onClickAdd = () => {
   const val = addInput.value;
   addInput.value = "";
@@ -19,6 +20,8 @@ const onClickAdd = () => {
 
   todoList.appendChild(createLi);
 };
+
+// 完了ボタンの処理
 
 addBtn.addEventListener("click", () => {
   onClickAdd();
