@@ -1,6 +1,8 @@
 const addBtn = document.querySelector("#add-btn");
 const addInput = document.querySelector("#add-input");
 const todoList = document.querySelector("#todo-list");
+const deleteBtns = document.querySelectorAll(".delete-button");
+const completeBtns = document.querySelectorAll(".complete-button");
 
 // 追加ボタンの処理
 const onClickAdd = () => {
@@ -20,9 +22,19 @@ const onClickAdd = () => {
 
   todoList.appendChild(createLi);
 };
-
-// 完了ボタンの処理
-
 addBtn.addEventListener("click", () => {
   onClickAdd();
+});
+
+// 削除ボタンの処理
+const onClickDelete = function () {
+  const parent = this.parentNode;
+  parent.remove();
+  if (todoList.children.length === 0) {
+    todoList.remove();
+  }
+};
+
+deleteBtns.forEach((deleteBtn) => {
+  deleteBtn.addEventListener("click", onClickDelete);
 });
