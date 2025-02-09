@@ -3,6 +3,7 @@ const addInput = document.querySelector("#add-input");
 const todoList = document.querySelector("#todo-list");
 const deleteBtns = document.querySelectorAll(".delete-button");
 const completeBtns = document.querySelectorAll(".complete-button");
+const returnButtons = document.querySelectorAll(".return-button");
 const completeTodo = document.querySelector("#complete-todo");
 
 // 追加ボタンの処理
@@ -62,7 +63,36 @@ const onClickComplete = function () {
   if (todoList.children.length === 0) {
     todoList.remove();
   }
+  createReturn.addEventListener("click", onClickReturn);
 };
 completeBtns.forEach((completeBtn) => {
   completeBtn.addEventListener("click", onClickComplete);
+});
+
+// 戻るボタンの処理
+const onClickReturn = function () {
+  const parent = this.parentNode;
+  const parentInner = parent.querySelector("span").innerHTML;
+  parent.remove();
+  const createComplete = document.createElement("button");
+  createComplete.className = "complete-button";
+  const createDelete = document.createElement("button");
+  createDelete.className = "delete-button";
+  createComplete.innerHTML = "完了";
+  createDelete.innerHTML = "削除";
+  const createLi = document.createElement("li");
+  createLi.className = "todo-item";
+  const createSpan = document.createElement("span");
+  createSpan.innerHTML = parentInner;
+  createLi.append(createSpan, createComplete, createDelete);
+  todoList.appendChild(createLi);
+  createLi
+    .querySelector(".delete-button")
+    .addEventListener("click", onClickDelete);
+  createLi
+    .querySelector(".complete-button")
+    .addEventListener("click", onClickComplete);
+};
+returnButtons.forEach((returnButton) => {
+  returnButton.addEventListener("click", onClickReturn);
 });
