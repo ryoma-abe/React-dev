@@ -38,9 +38,6 @@ addBtn.addEventListener("click", () => {
 const onClickDelete = function () {
   const parent = this.parentNode;
   parent.remove();
-  if (todoList.children.length === 0) {
-    todoList.remove();
-  }
 };
 
 deleteBtns.forEach((deleteBtn) => {
@@ -60,9 +57,6 @@ const onClickComplete = function () {
   createReturn.className = "return-button";
   createReturn.innerHTML = "戻す";
   parent.appendChild(createReturn);
-  if (todoList.children.length === 0) {
-    todoList.remove();
-  }
   createReturn.addEventListener("click", onClickReturn);
 };
 completeBtns.forEach((completeBtn) => {
