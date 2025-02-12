@@ -1,15 +1,13 @@
+import { ColorfulMessage } from "./components/ColorfulMessage";
 export const App = () => {
   const onClickButton = () => {
     alert("ボタン");
   };
-  const contentStyle = {
-    color: "red",
-    fontSize: "20px",
-  };
+
   return (
     <>
-      <h1 style={contentStyle}>こんにちは！</h1>
-      <p>お元気ですか</p>
+      <h1>こんにちは！</h1>
+      <ColorfulMessage color="blue" message="元気です" />
       <button onClick={onClickButton}>ボタン</button>
     </>
   );

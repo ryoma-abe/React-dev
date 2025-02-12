@@ -8,3 +8,7 @@ const root = createRoot(rootElement);
 
 root.render();
 ```
+
+## Props
+
+- コンポーネントに渡す引数のようなもの
