@@ -1,15 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ColorfulMessage } from "./components/ColorfulMessage";
 
 export const App = () => {
   const [num, setNum] = useState(0);
-  const [isShowFace, setIshowFace] = useState(true);
+  const [isShowFace, setIshowFace] = useState(false);
   const onClickToggle = () => {
     setIshowFace(!isShowFace);
   };
   const onClickButton = () => {
     setNum(num + 1);
   };
+
+  useEffect(() => {
+    if (num > 0) {
+      if (num % 3 === 0 || String(num).includes("3")) {
+        isShowFace || setIshowFace(true);
+      } else {
+        isShowFace && setIshowFace(false);
+      }
+    }
+  }, [num]);
 
   return (
     <>
