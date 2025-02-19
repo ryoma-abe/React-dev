@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./Todo.css";
 
 export const Todo = () => {
+  const [todoText, setTodoText] = useState();
   const [incompleteTodos, setIncompleteTodos] = useState([
     "TODOです1",
     "TODOです2",
@@ -10,12 +11,30 @@ export const Todo = () => {
     "TODOでした1",
     "TODOでした2",
   ]);
+
+  const onChangeTodoTxet = (e) => {
+    setTodoText(e.target.value);
+  };
+  const onClickAdd = () => {
+    if (todoText) {
+      const newTodos = [...incompleteTodos, todoText];
+      setIncompleteTodos(newTodos);
+      setTodoText("");
+    }
+  };
   return (
     <div className="container">
       {/* 入力エリア */}
       <div className="input-area">
-        <input id="add-input" type="text" className="todo-input" />
-        <button id="add-btn" className="add-button">
+        <input
+          id="add-input"
+          type="text"
+          className="todo-input"
+          value={todoText}
+          placeholder="TODOを入力"
+          onChange={onChangeTodoTxet}
+        />
+        <button id="add-btn" className="add-button" onClick={onClickAdd}>
           追加
         </button>
       </div>
