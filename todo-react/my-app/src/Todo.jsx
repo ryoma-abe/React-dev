@@ -6,6 +6,10 @@ export const Todo = () => {
     "TODOです1",
     "TODOです2",
   ]);
+  const [completeTodos, setcompleteTodos] = useState([
+    "TODOでした1",
+    "TODOでした2",
+  ]);
   return (
     <div className="container">
       {/* 入力エリア */}
@@ -20,15 +24,13 @@ export const Todo = () => {
       <div className="incomplete-area">
         <h2>未完了のTODO</h2>
         <ul id="todo-list" className="todo-list">
-          {incompleteTodos.map((todo, index) => {
-            return (
-              <li key={index} className="todo-item">
-                <span>{todo}</span>
-                <button className="complete-button">完了</button>
-                <button className="delete-button">削除</button>
-              </li>
-            );
-          })}
+          {incompleteTodos.map((todo) => (
+            <li key={todo} className="todo-item">
+              <span>{todo}</span>
+              <button className="complete-button">完了</button>
+              <button className="delete-button">削除</button>
+            </li>
+          ))}
         </ul>
       </div>
 
@@ -36,14 +38,12 @@ export const Todo = () => {
       <div className="complete-area">
         <h2>完了のTODO</h2>
         <ul id="complete-todo" className="todo-list">
-          <li className="todo-item">
-            <span>TODOでした</span>
-            <button className="return-button">戻す</button>
-          </li>
-          <li className="todo-item">
-            <span>TODOでした</span>
-            <button className="return-button">戻す</button>
-          </li>
+          {completeTodos.map((todo) => (
+            <li key={todo} className="todo-item">
+              <span>{todo}</span>
+              <button className="return-button">戻す</button>
+            </li>
+          ))}
         </ul>
       </div>
     </div>
