@@ -1,8 +1,18 @@
-export const InputArea = () => {
+export const InputArea = ({ text, setInputText, addTodo }) => {
+  const style = {
+    display: "flex",
+    gap: "10px",
+    marginBottom: "20px",
+  };
   return (
-    <div className="input-area">
-      <input id="add-input" type="text" className="todo-input" />
-      <button id="add-btn" className="add-button">
+    <div style={style}>
+      <input
+        id="add-input"
+        value={text}
+        className="todo-input"
+        onChange={setInputText}
+      />
+      <button id="add-btn" className="add-button" onClick={addTodo}>
         追加
       </button>
     </div>

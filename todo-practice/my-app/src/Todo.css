@@ -4,13 +4,6 @@
   padding: 0 20px;
   font-family: sans-serif;
 }
-
-.input-area {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
 .todo-input {
   flex: 1;
   padding: 8px 12px;
