@@ -5,9 +5,9 @@ import { InCompleteTodo } from "./components/InCompleteTodo";
 import { CompleteTodo } from "./components/CompleteTodo";
 
 export const Todo = () => {
+  // ステイト定義
   const [todoText, setTodoText] = useState("");
   const [incompleteTodos, setIncompleteTodos] = useState([]);
-
   const [completeTodos, setCompleteTodos] = useState([]);
 
   // 入力を取得する関数
