@@ -3,14 +3,9 @@ import "./Todo.css";
 
 export const Todo = () => {
   const [todoText, setTodoText] = useState();
-  const [incompleteTodos, setIncompleteTodos] = useState([
-    "TODOです1",
-    "TODOです2",
-  ]);
-  const [completeTodos, setcompleteTodos] = useState([
-    "TODOでした1",
-    "TODOでした2",
-  ]);
+  const [incompleteTodos, setIncompleteTodos] = useState([]);
+
+  const [completeTodos, setcompleteTodos] = useState([]);
 
   const onChangeTodoTxet = (e) => {
     setTodoText(e.target.value);
@@ -33,6 +28,13 @@ export const Todo = () => {
     setIncompleteTodos(newTodos);
     const newcompleteTodos = [...completeTodos, incompleteTodos[index]];
     setcompleteTodos(newcompleteTodos);
+  };
+  const returnTodo = (index) => {
+    const newTodos1 = [...completeTodos];
+    newTodos1.splice(index, 1);
+    setcompleteTodos(newTodos1);
+    const newTodos2 = [...incompleteTodos, completeTodos[index]];
+    setIncompleteTodos(newTodos2);
   };
   return (
     <div className="container">
@@ -83,10 +85,17 @@ export const Todo = () => {
       <div className="complete-area">
         <h2>完了のTODO</h2>
         <ul id="complete-todo" className="todo-list">
-          {completeTodos.map((todo) => (
+          {completeTodos.map((todo, index) => (
             <li key={todo} className="todo-item">
               <span>{todo}</span>
-              <button className="return-button">戻す</button>
+              <button
+                className="return-button"
+                onClick={() => {
+                  returnTodo(index);
+                }}
+              >
+                戻す
+              </button>
             </li>
           ))}
         </ul>
