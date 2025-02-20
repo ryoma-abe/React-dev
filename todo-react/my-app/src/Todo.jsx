@@ -27,6 +27,13 @@ export const Todo = () => {
     newTodos.splice(index, 1);
     setIncompleteTodos(newTodos);
   };
+  const completeTodo = (index) => {
+    const newTodos = [...incompleteTodos];
+    newTodos.splice(index, 1);
+    setIncompleteTodos(newTodos);
+    const newcompleteTodos = [...completeTodos, incompleteTodos[index]];
+    setcompleteTodos(newcompleteTodos);
+  };
   return (
     <div className="container">
       {/* 入力エリア */}
@@ -51,7 +58,14 @@ export const Todo = () => {
           {incompleteTodos.map((todo, index) => (
             <li key={todo} className="todo-item">
               <span>{todo}</span>
-              <button className="complete-button">完了</button>
+              <button
+                className="complete-button"
+                onClick={() => {
+                  completeTodo(index);
+                }}
+              >
+                完了
+              </button>
               <button
                 className="delete-button"
                 onClick={() => {
