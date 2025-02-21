@@ -1,4 +1,8 @@
-export const IncompleteArea = ({ incompleteTodo, onClickcomplete }) => {
+export const IncompleteArea = ({
+  incompleteTodo,
+  onClickcomplete,
+  deleteTodo,
+}) => {
   return (
     <div className="incomplete-area">
       <h2>未完了のTODO</h2>
@@ -14,7 +18,14 @@ export const IncompleteArea = ({ incompleteTodo, onClickcomplete }) => {
             >
               完了
             </button>
-            <button className="delete-button">削除</button>
+            <button
+              className="delete-button"
+              onClick={() => {
+                deleteTodo(i);
+              }}
+            >
+              削除
+            </button>
           </li>
         ))}
       </ul>

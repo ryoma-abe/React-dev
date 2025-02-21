@@ -34,7 +34,20 @@ export const Todo = () => {
   };
 
   // 削除ボタンの関数
+  const deleteTodo = (i) => {
+    const NewIncompleteTodo = [...incompleteTodo];
+    NewIncompleteTodo.splice(i, 1);
+    setIncompleteTodo(NewIncompleteTodo);
+  };
 
+  // 戻すボタンの関数
+  const onClickReturn = (i) => {
+    const NewCompleteTodo = [...completeTodo];
+    NewCompleteTodo.splice(i, 1);
+    const newInCompleteTodo = [...incompleteTodo, completeTodo[i]];
+    setCompleteTodo(NewCompleteTodo);
+    setIncompleteTodo(newInCompleteTodo);
+  };
 
   return (
     <div className="container">
@@ -44,9 +57,10 @@ export const Todo = () => {
       <IncompleteArea
         incompleteTodo={incompleteTodo}
         onClickcomplete={onClickcomplete}
+        deleteTodo={deleteTodo}
       />
       {/* 完了したTODO */}
-      <CompleteArea completeTodo={completeTodo} />
+      <CompleteArea completeTodo={completeTodo} onClickReturn={onClickReturn} />
     </div>
   );
 };
