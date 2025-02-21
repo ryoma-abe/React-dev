@@ -4,6 +4,7 @@ import { InputArea } from "./components/InputArea";
 import { useState } from "react";
 
 import "./Todo.css";
+import { Modal } from "./components/Modal";
 // スタイルの定義
 export const Todo = () => {
   const style = {
@@ -74,6 +75,7 @@ export const Todo = () => {
       />
       {/* 完了したTODO */}
       <CompleteArea completeTodo={completeTodo} onClickReturn={onClickReturn} />
+      <Modal />
     </div>
   );
 };
