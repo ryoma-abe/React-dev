@@ -6,13 +6,17 @@ import { useState } from "react";
 import "./Todo.css";
 
 export const Todo = () => {
+  // 追加エリアのstate
   const [text, setText] = useState("");
+  // 未完了エリアのstate
   const [incompleteTodo, setIncompleteTodo] = useState([]);
+  // 完了エリアのstate
+  const [completeTodo, setCompleteTodo] = useState([]);
 
   const setInputText = (e) => {
     setText(e.target.value);
   };
-
+  // 追加ボタンの関数
   const addTodo = () => {
     const NewTodo = [...incompleteTodo, text];
     console.log(NewTodo);
@@ -20,15 +24,29 @@ export const Todo = () => {
     setIncompleteTodo(NewTodo);
     setText("");
   };
+  // 完了ボタンの関数
+  const onClickcomplete = (i) => {
+    const NewIncompleteTodo = [...incompleteTodo];
+    NewIncompleteTodo.splice(i, 1);
+    const newCompleteTodo = [...completeTodo, incompleteTodo[i]];
+    setIncompleteTodo(NewIncompleteTodo);
+    setCompleteTodo(newCompleteTodo);
+  };
+
+  // 削除ボタンの関数
+
 
   return (
     <div className="container">
       {/* 入力エリア */}
       <InputArea text={text} setInputText={setInputText} addTodo={addTodo} />
       {/* 未完了のTODO */}
-      <IncompleteArea incompleteTodo={incompleteTodo} />
+      <IncompleteArea
+        incompleteTodo={incompleteTodo}
+        onClickcomplete={onClickcomplete}
+      />
       {/* 完了したTODO */}
-      <CompleteArea />
+      <CompleteArea completeTodo={completeTodo} />
     </div>
   );
 };
