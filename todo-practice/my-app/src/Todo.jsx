@@ -4,8 +4,11 @@ import { InputArea } from "./components/InputArea";
 import { useState } from "react";
 
 import "./Todo.css";
-
+// スタイルの定義
 export const Todo = () => {
+  const style = {
+    color: "red",
+  };
   // 追加エリアのstate
   const [text, setText] = useState("");
   // 未完了エリアのstate
@@ -48,11 +51,21 @@ export const Todo = () => {
     setCompleteTodo(NewCompleteTodo);
     setIncompleteTodo(newInCompleteTodo);
   };
+  // 条件の確認
+  const maxTodo = incompleteTodo.length >= 5;
 
   return (
     <div className="container">
       {/* 入力エリア */}
-      <InputArea text={text} setInputText={setInputText} addTodo={addTodo} />
+      <InputArea
+        text={text}
+        setInputText={setInputText}
+        addTodo={addTodo}
+        disabled={maxTodo}
+      />
+
+      {maxTodo && <p style={style}>タスクは5個位がちょうどいい</p>}
+
       {/* 未完了のTODO */}
       <IncompleteArea
         incompleteTodo={incompleteTodo}
