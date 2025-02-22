@@ -16,7 +16,8 @@ export const Todo = () => {
   const [incompleteTodo, setIncompleteTodo] = useState([]);
   // 完了エリアのstate
   const [completeTodo, setCompleteTodo] = useState([]);
-
+  // モーダルのstate
+  const [isOpenModal, setisOpenModal] = useState(false);
   const setInputText = (e) => {
     setText(e.target.value);
   };
@@ -52,6 +53,11 @@ export const Todo = () => {
     setCompleteTodo(NewCompleteTodo);
     setIncompleteTodo(newInCompleteTodo);
   };
+
+  // トグルボタンの関数
+  const modalToggle = () => {
+    setisOpenModal(!isOpenModal);
+  };
   // 条件の確認
   const maxTodo = incompleteTodo.length >= 5;
 
@@ -75,7 +81,7 @@ export const Todo = () => {
       />
       {/* 完了したTODO */}
       <CompleteArea completeTodo={completeTodo} onClickReturn={onClickReturn} />
-      <Modal />
+      <Modal modalToggle={modalToggle} isOpenModal={isOpenModal} />
     </div>
   );
 };
