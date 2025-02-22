@@ -1,3 +1,7 @@
 export const Chaild = ({ open }) => {
-  return <>{open && <p className="mt-10">子コンポーネント</p>}</>;
+  return (
+    <>
+      <div>{open && <p className="mt-10 backdrop-blur-lg">子コンポーネント</p>}</div>
+    </>
+  );
 };
