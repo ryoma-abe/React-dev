@@ -5,6 +5,7 @@ import { useState } from "react";
 
 import "./Todo.css";
 import { Modal } from "./components/Modal";
+import { Accordion } from "./components/Accordion";
 // スタイルの定義
 export const Todo = () => {
   const style = {
@@ -18,10 +19,13 @@ export const Todo = () => {
   const [completeTodo, setCompleteTodo] = useState([]);
   // モーダルのstate
   const [isOpenModal, setisOpenModal] = useState(false);
+  // アコーディオンのstate
+  const [isOpenAccordion, setisOpenAccordion] = useState(false);
+
+  // 追加ボタンの関数
   const setInputText = (e) => {
     setText(e.target.value);
   };
-  // 追加ボタンの関数
   const addTodo = () => {
     const NewTodo = [...incompleteTodo, text];
     console.log(NewTodo);
@@ -58,6 +62,10 @@ export const Todo = () => {
   const modalToggle = () => {
     setisOpenModal(!isOpenModal);
   };
+  // アコーディオンの関数
+  const AccordionToggle = () => {
+    setisOpenAccordion(!isOpenAccordion);
+  };
   // 条件の確認
   const maxTodo = incompleteTodo.length >= 5;
 
@@ -82,6 +90,10 @@ export const Todo = () => {
       {/* 完了したTODO */}
       <CompleteArea completeTodo={completeTodo} onClickReturn={onClickReturn} />
       <Modal modalToggle={modalToggle} isOpenModal={isOpenModal} />
+      <Accordion
+        AccordionToggle={AccordionToggle}
+        isOpenAccordion={isOpenAccordion}
+      />
     </div>
   );
 };
