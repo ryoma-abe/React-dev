@@ -1,6 +1,5 @@
 import { useState } from "react";
 import "./App.css";
-import { Chaild } from "./component/Chaild";
 
 export const App = () => {
   const [text, setText] = useState("");
@@ -23,7 +22,6 @@ export const App = () => {
       >
         表示
       </button>
-      <Chaild open={open} />
     </>
   );
 };
