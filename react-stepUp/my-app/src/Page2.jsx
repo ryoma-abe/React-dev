@@ -1,7 +1,7 @@
 export const Page2 = () => {
   return (
     <div>
-      <h1>これはPage2ページです</h1>
+      <h1 className="text-3xl text-center">これはPage2ページです</h1>
     </div>
   );
 };

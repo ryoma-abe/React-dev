@@ -1,10 +1,17 @@
-import { StrictMode } from "react";
+import { BrowserRouter, Link } from "react-router-dom";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import { App } from "./App.jsx";
+import { Router } from "./router/Router";
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <App />
-  </StrictMode>
+  <BrowserRouter>
+    <div>
+      <nav className="flex gap-3 mx-auto w-fit my-5">
+        <Link to="/">Home</Link>
+        <Link to="/about">About</Link>
+        <Link to="/page2">Page2</Link>
+      </nav>
+      <Router />
+    </div>
+  </BrowserRouter>
 );
