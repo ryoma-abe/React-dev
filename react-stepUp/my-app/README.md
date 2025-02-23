@@ -84,3 +84,170 @@ const Child = memo(({ onClick }) => {
 - 頻繁に更新される親コンポーネントの子要素
 
 ただし、過剰な最適化は逆にコードを複雑にする可能性があるため、パフォーマンスの問題が実際に発生している箇所にのみ適用することをお勧めします。
+
+# React における様々な CSS 手法
+
+## 13. Inline Styles
+
+React 要素に直接スタイルを適用する手法
+
+```jsx
+function App() {
+  return (
+    <div
+      style={{
+        backgroundColor: "blue",
+        padding: "20px",
+        // キャメルケースで記述
+        borderRadius: "8px",
+      }}
+    >
+      Hello
+    </div>
+  );
+}
+```
+
+## 14. CSS Modules
+
+コンポーネントスコープの CSS を実現する
+
+```css
+/* Button.module.css */
+.button {
+  background: blue;
+  color: white;
+}
+
+.primary {
+  background: green;
+}
+```
+
+```jsx
+import styles from "./Button.module.css";
+
+function Button() {
+  return (
+    <button className={`${styles.button} ${styles.primary}`}>Click me</button>
+  );
+}
+```
+
+## 15. Styled JSX
+
+Next.js がデフォルトでサポートする CSS in JS
+
+```jsx
+function Button() {
+  return (
+    <>
+      <button className="button">Click me</button>
+      <style jsx>{`
+        .button {
+          background: blue;
+          color: white;
+        }
+      `}</style>
+    </>
+  );
+}
+```
+
+Vite での設定:
+
+```bash
+npm install styled-jsx
+```
+
+```js
+// vite.config.js
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+
+export default defineConfig({
+  plugins: [
+    react({
+      babel: {
+        plugins: ["styled-jsx/babel"],
+      },
+    }),
+  ],
+});
+```
+
+## 16. styled-components
+
+人気の CSS in JS ライブラリ
+
+```bash
+npm install styled-components
+```
+
+```jsx
+import styled from "styled-components";
+
+const Button = styled.button`
+  background: ${(props) => (props.primary ? "blue" : "white")};
+  color: white;
+  padding: 10px 20px;
+`;
+
+function App() {
+  return <Button primary>Click me</Button>;
+}
+```
+
+## 17. Emotion
+
+柔軟な CSS in JS ソリューション
+
+```bash
+npm install @emotion/react @emotion/styled
+```
+
+```jsx
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+
+const Button = styled.button`
+  background: blue;
+  color: white;
+  ${(props) =>
+    props.primary &&
+    css`
+      background: green;
+    `}
+`;
+
+function App() {
+  return <Button primary>Click me</Button>;
+}
+```
+
+Vite での設定:
+
+```js
+// vite.config.js
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+
+export default defineConfig({
+  plugins: [
+    react({
+      jsxImportSource: "@emotion/react",
+      babel: {
+        plugins: ["@emotion/babel-plugin"],
+      },
+    }),
+  ],
+});
+```
+
+各アプローチの特徴:
+
+- Inline Styles: 簡単だが、疑似クラスやメディアクエリが使えない
+- CSS Modules: コンポーネントスコープで CSS が書ける
+- Styled JSX: Next.js と相性が良い
+- styled-components: 動的スタイリングが容易
+- Emotion: パフォーマンスが良く、柔軟性が高い
