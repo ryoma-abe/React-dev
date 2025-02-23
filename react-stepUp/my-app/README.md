@@ -207,22 +207,21 @@ npm install @emotion/react @emotion/styled
 ```
 
 ```jsx
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
+/** @jsxImportSource @emotion/react */
+import { jsx, css } from "@emotion/react";
 
-const Button = styled.button`
-  background: blue;
-  color: white;
-  ${(props) =>
-    props.primary &&
-    css`
-      background: green;
-    `}
+const TextStyle = css`
+  font-size: 100px;
+  color: red;
 `;
 
-function App() {
-  return <Button primary>Click me</Button>;
-}
+export const Child = ({ open }) => {
+  return (
+    <>
+      <div>{open && <p css={TextStyle}>子コンポーネント</p>}</div>
+    </>
+  );
+};
 ```
 
 Vite での設定:

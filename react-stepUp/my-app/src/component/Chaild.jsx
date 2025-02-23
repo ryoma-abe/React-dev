@@ -1,19 +1,15 @@
+/** @jsxImportSource @emotion/react */
+import { jsx, css } from "@emotion/react";
+
+const TextStyle = css`
+  font-size: 100px;
+  color: red;
+`;
+
 export const Chaild = ({ open }) => {
   return (
     <>
-      <div>
-        {open && (
-          <p className="mt-10 backdrop-blur-lg text-child">子コンポーネント</p>
-        )}
-      </div>
-      <style jsx="true">
-        {`
-          .text-child {
-            font-size: 100px;
-            margin: 100px;
-          }
-        `}
-      </style>
+      <div>{open && <p css={TextStyle}>子コンポーネント</p>}</div>
     </>
   );
 };
