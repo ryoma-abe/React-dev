@@ -1,7 +1,7 @@
 import { About } from "../About";
 import { Page1DetailA } from "../Page1DetailA";
 import { Page1DetailB } from "../Page1DetailB";
-export const Page1Routeres = () => [
+export const Page1Routeres = [
   {
     path: "/",
     exact: true,
