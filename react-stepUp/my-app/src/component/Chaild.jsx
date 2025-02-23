@@ -1,19 +1,27 @@
+import styled from "styled-components";
+
 export const Chaild = ({ open }) => {
   return (
     <>
       <div>
-        {open && (
-          <p className="mt-10 backdrop-blur-lg text-child">子コンポーネント</p>
-        )}
+        {open && <SText>子コンポーネント</SText>}
+        <p>2つ目のテキストです</p>
+        <SButton>リセット</SButton>
       </div>
-      <style jsx="true">
-        {`
-          .text-child {
-            font-size: 100px;
-            margin: 100px;
-          }
-        `}
-      </style>
     </>
   );
 };
+
+const SText = styled.p`
+  font-size: 100px;
+  color: red;
+`;
+const SButton = styled.button`
+  background-color: red;
+  padding: 10px 20px;
+  margin-top: 100px;
+  &:hover {
+    background-color: blue;
+    color: #fff;
+  }
+`;
