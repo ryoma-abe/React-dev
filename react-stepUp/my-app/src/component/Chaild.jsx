@@ -1,15 +1,27 @@
-/** @jsxImportSource @emotion/react */
-import { jsx, css } from "@emotion/react";
-
-const TextStyle = css`
-  font-size: 100px;
-  color: red;
-`;
+import styled from "styled-components";
 
 export const Chaild = ({ open }) => {
   return (
     <>
-      <div>{open && <p css={TextStyle}>子コンポーネント</p>}</div>
+      <div>
+        {open && <SText>子コンポーネント</SText>}
+        <p>2つ目のテキストです</p>
+        <SButton>リセット</SButton>
+      </div>
     </>
   );
 };
+
+const SText = styled.p`
+  font-size: 100px;
+  color: red;
+`;
+const SButton = styled.button`
+  background-color: red;
+  padding: 10px 20px;
+  margin-top: 100px;
+  &:hover {
+    background-color: blue;
+    color: #fff;
+  }
+`;
