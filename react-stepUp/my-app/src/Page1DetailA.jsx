@@ -1,3 +1,7 @@
+import { useLocation } from "react-router-dom";
+const location = useLocation();
+console.log(location);
+
 export const Page1DetailA = () => {
   return (
     <div>
