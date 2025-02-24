@@ -1,19 +1,37 @@
+import styled from "styled-components";
+
 export const Header = () => {
+  const HeaderWrapper = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    max-width: 1000px;
+    margin-inline: auto;
+  `;
+  const Logo = styled.img`
+    max-width: 120px;
+  `;
+  const HeaderUl = styled.ul`
+    display: flex;
+    gap: 20px;
+  `;
+
   return (
     <header>
-      <div>
-        <img src="/src/assets/logo.svg" alt="ロゴ画像" />
+      <HeaderWrapper>
+        <Logo src="/src/assets/logo.svg" alt="ロゴ画像" />
         <nav>
-          <ul>
+          <HeaderUl>
             <li>
               <a href="">About</a>
             </li>
             <li>
               <a href="">Bicycle</a>
             </li>
-          </ul>
+          </HeaderUl>
         </nav>
-      </div>
+      </HeaderWrapper>
     </header>
   );
 };
