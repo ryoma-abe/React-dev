@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Header = () => {
   const HeaderWrapper = styled.div`
@@ -24,10 +25,13 @@ export const Header = () => {
         <nav>
           <HeaderUl>
             <li>
-              <a href="">About</a>
+              <Link to="/">Home</Link>
             </li>
             <li>
-              <a href="">Bicycle</a>
+              <Link to="/page/about">About</Link>
+            </li>
+            <li>
+              <Link to="/page/bicycle">Bicycle</Link>
             </li>
           </HeaderUl>
         </nav>
