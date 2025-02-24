@@ -250,3 +250,274 @@ export default defineConfig({
 - Styled JSX: Next.js と相性が良い
 - styled-components: 動的スタイリングが容易
 - Emotion: パフォーマンスが良く、柔軟性が高い
+
+# React Router
+
+## 18. React Router バージョンの注意点
+
+React Router はバージョンによって構文や機能が大きく異なります。バージョン 6 以降が最新で、最も推奨されています。このガイドでは v6 の文法を使用しています。
+
+## 19. React Router 導入＆事前準備
+
+インストール方法:
+
+```bash
+npm install react-router-dom
+```
+
+基本的なセットアップ:
+
+```jsx
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import About from "./pages/About";
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+```
+
+## 20. 基本的なページ遷移
+
+ページ間の移動には`Link`コンポーネントを使用します:
+
+```jsx
+import { Link } from "react-router-dom";
+
+function Navigation() {
+  return (
+    <nav>
+      <Link to="/">ホーム</Link>
+      <Link to="/about">About</Link>
+    </nav>
+  );
+}
+```
+
+## 21. ネストされたページ遷移
+
+ネストされたルーティングの実装:
+
+```jsx
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="about" element={<About />} />
+          <Route path="users" element={<Users />}>
+            <Route path=":userId" element={<UserDetail />} />
+          </Route>
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+// 親レイアウトコンポーネント
+function Layout() {
+  return (
+    <>
+      <header>ヘッダー</header>
+      <Outlet /> {/* 子ルートがここにレンダリングされる */}
+      <footer>フッター</footer>
+    </>
+  );
+}
+```
+
+## 22. ルート定義の分割
+
+大規模アプリケーションでのルーティング管理:
+
+```jsx
+// routes.jsx
+import { createBrowserRouter } from "react-router-dom";
+
+export const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <RootLayout />,
+    children: [
+      { index: true, element: <Home /> },
+      { path: "about", element: <About /> },
+      {
+        path: "products",
+        element: <ProductsLayout />,
+        children: [
+          { index: true, element: <ProductList /> },
+          { path: ":productId", element: <ProductDetail /> },
+        ],
+      },
+    ],
+  },
+]);
+
+// App.jsx
+import { RouterProvider } from "react-router-dom";
+import { router } from "./routes";
+
+function App() {
+  return <RouterProvider router={router} />;
+}
+```
+
+## 23. URL パラメータを取る
+
+動的な URL パラメータの利用:
+
+```jsx
+// URLパターン: /users/:userId
+import { useParams } from "react-router-dom";
+
+function UserDetail() {
+  const { userId } = useParams();
+
+  return <div>ユーザーID: {userId}</div>;
+}
+```
+
+## 24. クエリパラメータを扱う
+
+URL のクエリパラメータ（?name=value）の取得:
+
+```jsx
+// 例: /search?query=react&sort=asc
+import { useSearchParams } from "react-router-dom";
+
+function SearchPage() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get("query") || "";
+  const sort = searchParams.get("sort") || "desc";
+
+  const handleSort = (newSort) => {
+    setSearchParams({ query, sort: newSort });
+  };
+
+  return (
+    <div>
+      <p>検索クエリ: {query}</p>
+      <p>並び順: {sort}</p>
+      <button onClick={() => handleSort(sort === "asc" ? "desc" : "asc")}>
+        並び順を変更
+      </button>
+    </div>
+  );
+}
+```
+
+## 25. state を渡すページ遷移
+
+リンク間でステート（状態）を渡す方法:
+
+```jsx
+import { Link, useLocation } from "react-router-dom";
+
+// 送信側
+function ProductList() {
+  const products = [
+    { id: 1, name: "商品A", price: 1000 },
+    { id: 2, name: "商品B", price: 2000 },
+  ];
+
+  return (
+    <ul>
+      {products.map((product) => (
+        <li key={product.id}>
+          <Link to={`/products/${product.id}`} state={{ productData: product }}>
+            {product.name}
+          </Link>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+// 受信側
+function ProductDetail() {
+  const location = useLocation();
+  const { productData } = location.state || {};
+
+  return (
+    <div>
+      {productData ? (
+        <>
+          <h2>{productData.name}</h2>
+          <p>価格: {productData.price}円</p>
+        </>
+      ) : (
+        <p>商品情報がありません</p>
+      )}
+    </div>
+  );
+}
+```
+
+## 26. Link を使わないページ遷移
+
+プログラム的にナビゲーションを行う方法:
+
+```jsx
+import { useNavigate } from "react-router-dom";
+
+function LoginForm() {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // ログイン処理...
+    const success = await loginUser(username, password);
+
+    if (success) {
+      // ログイン成功時にダッシュボードへリダイレクト
+      navigate("/dashboard", { replace: true });
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      {/* フォーム要素 */}
+      <button type="submit">ログイン</button>
+    </form>
+  );
+}
+```
+
+## 27. 404 ページを用意する
+
+存在しないルートへのアクセス処理:
+
+```jsx
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        {/* 他のルート */}
+
+        {/* 404ページ - 最後に配置 */}
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+function NotFound() {
+  return (
+    <div>
+      <h1>404 - ページが見つかりません</h1>
+      <p>お探しのページは存在しないか、移動した可能性があります。</p>
+      <Link to="/">ホームに戻る</Link>
+    </div>
+  );
+}
+```
