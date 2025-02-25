@@ -1,4 +1,4 @@
-# React Router v6 完全ガイド
+# React Router v6 完全ガイド - 改訂版
 
 ## 1. React Router の導入と基本設定
 
@@ -244,9 +244,9 @@ function ProductDetail() {
 
 **注意**: `location.state` は、ブラウザのリロードや新しいタブで開いた場合には失われます。永続的なデータ保存には向いていません。
 
-## 8. `useNavigate` を使った programmatic なナビゲーション
+## 8. プログラムによるナビゲーション（useNavigate）
 
-フォーム送信後やボタンクリック時など、ユーザーアクションに応じてプログラムでページ遷移を行う方法:
+フォーム送信後やボタンクリック時など、ユーザーアクションに応じて、コードでページ遷移を行う方法:
 
 ```jsx
 import { useNavigate } from "react-router-dom";
@@ -270,19 +270,47 @@ function LoginForm() {
 }
 ```
 
-`replace` オプションを使うと、履歴スタックに新しいエントリを追加せずに現在のエントリを置き換えます:
+履歴を置き換える（戻るボタンで前のページに戻れなくする）:
 
 ```jsx
-// ユーザーが「戻る」ボタンを押してもログインページには戻れない
 navigate("/dashboard", { replace: true });
 ```
 
-## 9. 404 ページの設定
+## 9. 戻るボタンの実装
+
+履歴の一つ前のページに戻るボタンを実装する方法:
+
+```jsx
+import { useNavigate } from "react-router-dom";
+
+function DetailPage() {
+  const navigate = useNavigate();
+
+  const handleGoBack = () => {
+    navigate(-1); // 履歴の1つ前に戻る
+  };
+
+  return (
+    <div>
+      <h1>詳細ページ</h1>
+      <button onClick={handleGoBack}>戻る</button>
+    </div>
+  );
+}
+```
+
+数値引数:
+
+- `-1`: 履歴の 1 つ前に戻る
+- `1`: 履歴の 1 つ先に進む (「戻る」の後の「進む」)
+- `-2`: 履歴の 2 つ前に戻る
+
+## 10. 404 ページの設定
 
 存在しないルートへのアクセスを処理します:
 
 ```jsx
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
 function App() {
   return (
@@ -309,7 +337,7 @@ function NotFound() {
 }
 ```
 
-## 10. アクティブなリンクのスタイリング
+## 11. アクティブなリンクのスタイリング
 
 現在のルートに基づいてナビゲーションリンクのスタイルを変更できます:
 
@@ -345,7 +373,7 @@ CSS:
 }
 ```
 
-## 11. ルートの保護（認証が必要なルート）
+## 12. ルートの保護（認証が必要なルート）
 
 認証が必要なルートを実装する方法:
 
@@ -386,7 +414,7 @@ function App() {
 }
 ```
 
-## 12. ルート定義の分割（大規模アプリケーション向け）
+## 13. ルート定義の分割（大規模アプリケーション向け）
 
 大規模なアプリケーションでは、ルート定義を分割すると管理が容易になります:
 
@@ -428,7 +456,7 @@ function App() {
 }
 ```
 
-## 13. データローディングの最適化
+## 14. データローディングの最適化
 
 React Router v6.4 以降は、ルートローダーを使ってデータのフェッチを最適化できます:
 
@@ -473,13 +501,29 @@ function Users() {
 }
 ```
 
+## 15. バージョン間の主な違い
+
+React Router v5 と v6 の主な違い：
+
+| 機能               | v5                         | v6                           |
+| ------------------ | -------------------------- | ---------------------------- |
+| ルート一致         | `<Switch>`                 | `<Routes>`                   |
+| ルートネスト       | 複雑                       | シンプル（`<Outlet>`を使用） |
+| パラメータアクセス | `useParams`                | 同じ（`useParams`）          |
+| クエリパラメータ   | `useLocation` + クエリ解析 | `useSearchParams`            |
+| プログラム的遷移   | `useHistory`               | `useNavigate`                |
+| 戻るボタン         | `history.goBack()`         | `navigate(-1)`               |
+| アクティブリンク   | `activeClassName` プロップ | `className` 関数プロップ     |
+| データローディング | 自前で実装                 | ルートローダー（v6.4 以降）  |
+
 ## まとめ
 
 React Router v6 は、以前のバージョンと比較してより宣言的でシンプルな API を提供しています。重要な違いを把握しておくことで、効率的なルーティングを実装できます。
 
-- v5 の`Switch`は、v6 では`Routes`に変更
 - ネストしたルートが簡単になり、`Outlet`を使用して子ルートをレンダリング
-- プログラムでのナビゲーションは`useNavigate`を使用
-- データローディングとフォーム処理の新 API が追加（v6.4 以降）
+- プログラムでのナビゲーションは`useNavigate`を使用し、前に戻るには`navigate(-1)`
+- データ受け渡しには`state`プロパティを使用（ページリロードでは失われる点に注意）
+- 大規模アプリでは`createBrowserRouter`を使ったルート定義の分割が便利
+- v6.4 以降はデータローディングとフォーム処理の新 API が追加
 
 このガイドを参考に、React Router を活用した快適なユーザー体験を提供しましょう。
