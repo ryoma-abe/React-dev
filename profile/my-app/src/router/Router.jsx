@@ -1,11 +1,10 @@
 import { Routes, Route } from "react-router-dom";
-import { Header } from "./components/Header";
-import { Top } from "./pages/Top";
+import { Header } from "../components/Header";
+import { Top } from "../pages/Top";
+import { PageBicycle } from "../pages/PageBicycle";
+import { PageAbout } from "../pages/PageAbout";
 
-import { PageBicycle } from "./pages/PageBicycle";
-import { PageAbout } from "./pages/PageAbout";
-
-function App() {
+export const App = () => {
   return (
     <>
       <Header />
@@ -16,6 +15,4 @@ function App() {
       </Routes>
     </>
   );
-}
-
-export default App;
+};
