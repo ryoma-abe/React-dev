@@ -17,7 +17,7 @@ export const Header = () => {
     display: flex;
     gap: 20px;
   `;
-
+  const arr = [...Array(100).keys()];
   return (
     <header>
       <HeaderWrapper>
@@ -29,6 +29,11 @@ export const Header = () => {
             </li>
             <li>
               <Link to="/page/about">About</Link>
+            </li>
+            <li>
+              <Link to="/page/about/about-detail" state={arr}>
+                Detail
+              </Link>
             </li>
             <li>
               <Link to="/page/bicycle">Bicycle</Link>
