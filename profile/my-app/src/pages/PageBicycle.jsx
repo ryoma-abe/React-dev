@@ -1,10 +1,8 @@
-
-
 export const PageBicycle = () => {
   return (
     <>
       <div>
-        <h1>ここはBicycleページです。</h1>
+        <h1 className="text-center">ここはBicycleページです。</h1>
       </div>
     </>
   );
