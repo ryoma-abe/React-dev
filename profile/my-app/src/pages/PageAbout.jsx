@@ -2,7 +2,7 @@ export const PageAbout = () => {
   return (
     <>
       <div>
-        <h1>ここはアバウトページです。</h1>
+        <h1 className="text-center">ここはアバウトページです。</h1>
       </div>
     </>
   );
