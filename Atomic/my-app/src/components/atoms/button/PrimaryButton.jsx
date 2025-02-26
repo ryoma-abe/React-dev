@@ -5,15 +5,5 @@ export const PrimaryButton = ({ children }) => {
   const Button = styled(BaseButton)`
     background: #40514e;
   `;
-  const ButtonWrapper = styled.button`
-    width: 100%;
-    text-align: center;
-    background-color: #fff;
-    border: none;
-  `;
-  return (
-    <ButtonWrapper>
-      <Button>{children}</Button>
-    </ButtonWrapper>
-  );
+  return <Button>{children}</Button>;
 };
