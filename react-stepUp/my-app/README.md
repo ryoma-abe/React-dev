@@ -306,6 +306,8 @@ function Navigation() {
 ネストされたルーティングの実装:
 
 ```jsx
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
 function App() {
   return (
     <BrowserRouter>
@@ -341,6 +343,12 @@ function Layout() {
 ```jsx
 // routes.jsx
 import { createBrowserRouter } from "react-router-dom";
+import RootLayout from "./layouts/RootLayout";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import ProductsLayout from "./layouts/ProductsLayout";
+import ProductList from "./pages/ProductList";
+import ProductDetail from "./pages/ProductDetail";
 
 export const router = createBrowserRouter([
   {
@@ -496,6 +504,10 @@ function LoginForm() {
 存在しないルートへのアクセス処理:
 
 ```jsx
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import Home from "./pages/Home";
+import About from "./pages/About";
+
 function App() {
   return (
     <BrowserRouter>
