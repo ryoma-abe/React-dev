@@ -15,7 +15,7 @@ export const Header = () => {
   return (
     <Sheader>
       <Link to="/">HOME</Link>
-      <Link to="/USERS">USERS</Link>
+      <Link to="/users">USERS</Link>
     </Sheader>
   );
 };
