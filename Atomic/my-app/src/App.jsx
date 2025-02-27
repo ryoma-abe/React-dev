@@ -3,7 +3,7 @@ import { PrimaryButton } from "./components/atoms/button/PrimaryButton";
 import { SecondaryButton } from "./components/atoms/button/SecondaryButton";
 import { SearchInput } from "./components/molecules/SearchInput";
 import { UserCard } from "./components/orgnism/user/UserCard";
-import { HeaderOnly } from "./components/templets/HeaderOnly";
+import { DefalutLayout } from "./components/templets/DefalutLayout";
 
 export const App = () => {
   const WrapperStyle = {
@@ -21,7 +21,7 @@ export const App = () => {
   };
   return (
     <BrowserRouter>
-      <HeaderOnly>
+      <DefalutLayout>
         <div style={WrapperStyle}>
           <PrimaryButton>テスト</PrimaryButton>
           <SecondaryButton>検索</SecondaryButton>
@@ -30,7 +30,7 @@ export const App = () => {
           <UserCard user={user} />
           <SearchInput />
         </div>
-      </HeaderOnly>
+      </DefalutLayout>
     </BrowserRouter>
   );
 };
