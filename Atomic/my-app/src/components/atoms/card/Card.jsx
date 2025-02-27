@@ -11,4 +11,6 @@ const Scard = styled.div`
   max-width: 400px;
   margin: 0 auto;
 `;
-export const Card = () => <Scard></Scard>;
+export const Card = ({ children }) => {
+  return <Scard>{children}</Scard>;
+};
