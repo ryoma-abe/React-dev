@@ -1,19 +1,6 @@
 import styled from "styled-components";
 import { Card } from "../../atoms/card/Card";
-
-const ProfileImage = styled.img`
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 16px;
-  border: 3px solid #f0f0f0;
-`;
-
-const UserName = styled.p`
-  font-size: 24px;
-  font-weight: bold;
-  margin: 8px 0 16px;
-  color: #333;
-`;
+import { UserIconWithName } from "../../molecules/user/UserIconWithName";
 
 const InfoList = styled.dl`
   width: 100%;
@@ -32,15 +19,14 @@ const InfoLabel = styled.dt`
 const InfoValue = styled.dd`
   margin: 0;
   color: #333;
+  overflow-wrap: break-word;
 `;
 
 // UserCard コンポーネント
 export const UserCard = ({ user }) => {
   return (
     <Card>
-      <ProfileImage height={160} width={160} src={user.image} alt={user.name} />
-
-      <UserName>{user.name}</UserName>
+      <UserIconWithName name={user.name} image={user.image} />
       <InfoList>
         <InfoLabel>メール</InfoLabel>
         <InfoValue>{user.mail}</InfoValue>
