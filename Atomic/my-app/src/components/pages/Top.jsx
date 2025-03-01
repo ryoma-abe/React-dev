@@ -3,9 +3,12 @@ import { SecondaryButton } from "../atoms/button/SecondaryButton";
 import { useNavigate } from "react-router-dom";
 
 export const Top = () => {
-  const onClickAdmin = () => navigate("/admin");
-  const onClickGeneral = () => alert("一般");
   const navigate = useNavigate();
+  const onClickAdmin = () => navigate("/users", { state: { isAdmin: true } });
+
+  const onClickGeneral = () =>
+    navigate("/users", { state: { isAdmin: false } });
+
   return (
     <Scontainer>
       <h2>トップページです</h2>
