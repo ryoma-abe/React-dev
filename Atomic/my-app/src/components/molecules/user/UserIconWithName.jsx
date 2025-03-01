@@ -14,11 +14,18 @@ const UserName = styled.p`
   color: #333;
 `;
 
-export const UserIconWithName = ({ image, name }) => {
+const SEdit = styled.span`
+  text-decoration: underline;
+  cursor: pointer;
+  color: #aaa;
+`;
+
+export const UserIconWithName = ({ image, name, isAdmin }) => {
   return (
     <div>
       <ProfileImage height={160} width={160} src={image} alt={name} />
       <UserName>{name}</UserName>
+      {isAdmin && <SEdit>編集</SEdit>}
     </div>
   );
 };

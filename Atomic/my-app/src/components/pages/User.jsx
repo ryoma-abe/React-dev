@@ -24,7 +24,7 @@ export const User = () => {
       <h2>User一覧です</h2>
       <SearchInput />
       {users.map((user) => (
-        <UserCard key={user.id} user={user} />
+        <UserCard key={user.id} user={user} isAdmin={isAdmin}/>
       ))}
     </Scontainer>
   );
