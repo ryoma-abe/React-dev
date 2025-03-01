@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { SearchInput } from "../molecules/SearchInput";
 import { UserCard } from "../orgnism/user/UserCard";
+import { useLocation } from "react-router-dom";
 const users = [...Array(10).keys()].map((val) => {
   return {
     id: val,
@@ -14,6 +15,10 @@ const users = [...Array(10).keys()].map((val) => {
 });
 
 export const User = () => {
+  const location = useLocation();
+  const { state } = location;
+  const isAdmin = state ? state.isAdmin : false;
+
   return (
     <Scontainer>
       <h2>User一覧です</h2>
