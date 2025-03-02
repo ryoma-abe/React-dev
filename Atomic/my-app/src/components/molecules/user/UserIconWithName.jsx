@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import { UserContext } from "../../../provider/UserProvider";
 
 const ProfileImage = styled.img`
   border-radius: 50%;
@@ -20,7 +22,10 @@ const SEdit = styled.span`
   color: #aaa;
 `;
 
-export const UserIconWithName = ({ image, name, isAdmin }) => {
+export const UserIconWithName = ({ image, name }) => {
+  const { userInfo } = useContext(UserContext);
+  const isAdmin = userInfo ? userInfo.isAdmin : false;
+
   return (
     <div>
       <ProfileImage height={160} width={160} src={image} alt={name} />

@@ -23,10 +23,10 @@ const InfoValue = styled.dd`
 `;
 
 // UserCard コンポーネント
-export const UserCard = ({ user,isAdmin }) => {
+export const UserCard = ({ user }) => {
   return (
     <Card>
-      <UserIconWithName name={user.name} image={user.image} isAdmin={isAdmin}/>
+      <UserIconWithName name={user.name} image={user.image} />
       <InfoList>
         <InfoLabel>メール</InfoLabel>
         <InfoValue>{user.mail}</InfoValue>
