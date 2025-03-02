@@ -7,6 +7,8 @@ import { UserContext } from "../../provider/UserProvider";
 export const Top = () => {
   const navigate = useNavigate();
   const { setUserInfo } = useContext(UserContext);
+  console.log(setUserInfo);
+
   const onClickAdmin = () => {
     setUserInfo({
       isAdmin: true,
