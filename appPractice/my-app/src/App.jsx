@@ -1,24 +1,15 @@
-import { useState } from "react";
 import "./App.css";
+import { AddButton } from "./components/Button/AddButton";
+import { DisplayComponent } from "./components/DisplayComponent";
+import { CountProvider } from "./provider/CountProvider";
 
 export const App = () => {
-  const [countUp, setCountUp] = useState(0);
-  const onClickAdd = () => {
-    setCountUp(countUp + 1);
-  };
-  const onClickPrev = () => {
-    setCountUp(countUp - 1);
-  };
-  const onClickReset = () => {
-    setCountUp(0);
-  };
-
   return (
     <>
-      <p>{countUp}</p>
-      <button onClick={onClickAdd}>Add</button>
-      <button onClick={onClickPrev}>Prev</button>
-      <button onClick={onClickReset}>Reset</button>
+      <CountProvider>
+        <DisplayComponent />
+        <AddButton />
+      </CountProvider>
     </>
   );
 };
