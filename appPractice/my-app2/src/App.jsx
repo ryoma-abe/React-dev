@@ -1,4 +1,4 @@
-import { List } from "./components/atoms/List";
+import { List } from "./components/atoms/IncompleteTodoList";
 import { ButtonArea } from "./components/molecules/ButtonArea";
 import { InputArea } from "./components/molecules/InputArea";
 import { Default } from "./components/templates/Default";
