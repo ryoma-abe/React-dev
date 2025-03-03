@@ -1,10 +1,4 @@
-import { useState } from "react";
-
-export const Input = ({ placeholder }) => {
-  const [inputText, setInputText] = useState("テキスト");
-  const onChangeInputText = (e) => {
-    setInputText.apply(e.target.value);
-  };
+export const Input = ({ placeholder,inputText,onChangeInputText }) => {
   return (
     <input
       className="border p-2 w-full"
