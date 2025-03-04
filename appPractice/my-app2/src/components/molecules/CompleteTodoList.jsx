@@ -18,8 +18,6 @@ export const CompleteTodoList = () => {
   };
   return (
     <>
-      <hr className="mt-20" />
-      <h3 className="mt-10">完了Todo</h3>
       <ul className="w-full flex flex-col gap-2 mt-10">
         {completeTodos.map((todo, index) => (
           <li
