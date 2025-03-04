@@ -1,4 +1,5 @@
 import { ButtonArea } from "./components/molecules/ButtonArea";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CompleteTodoList } from "./components/molecules/CompleteTodoList";
 import { IncompleteTodoList } from "./components/molecules/IncompleteTodoList";
 import { InputArea } from "./components/molecules/InputArea";
@@ -7,13 +8,26 @@ import { ListProvider } from "./provider/ListProvider";
 
 export const App = () => {
   return (
-    <ListProvider>
-      <Default>
-        <InputArea />
-        <ButtonArea />
-        <IncompleteTodoList />
-        <CompleteTodoList />
-      </Default>
-    </ListProvider>
+    <BrowserRouter>
+      <ListProvider>
+        <Default>
+          <InputArea />
+          <ButtonArea />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <IncompleteTodoList />
+                  <CompleteTodoList />
+                </>
+              }
+            />
+            <Route path="/Incomplete" element={<IncompleteTodoList />} />
+            <Route path="/complete" element={<CompleteTodoList />} />
+          </Routes>
+        </Default>
+      </ListProvider>
+    </BrowserRouter>
   );
 };
