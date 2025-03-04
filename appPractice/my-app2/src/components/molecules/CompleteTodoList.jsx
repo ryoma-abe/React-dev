@@ -3,9 +3,18 @@ import { ListContext } from "../../provider/ListProvider";
 import { Button } from "../atoms/Button";
 
 export const CompleteTodoList = () => {
-  const { completeTodos, setIncompleteTodos } = useContext(ListContext);
-  const onClickReverse = () => {
-    alert();
+  const {
+    incompleteTodos,
+    setIncompleteTodos,
+    completeTodos,
+    setCompleteTodos,
+  } = useContext(ListContext);
+  const onClickReverse = (index) => {
+    const NewCompleteTodos = [...completeTodos];
+    NewCompleteTodos.splice(index, 1);
+    setCompleteTodos(NewCompleteTodos);
+    const NewInCompleteTodos = [...incompleteTodos, completeTodos[index]];
+    setIncompleteTodos(NewInCompleteTodos);
   };
   return (
     <>
@@ -17,7 +26,7 @@ export const CompleteTodoList = () => {
           >
             {todo}
             <div className="flex gap-4">
-              <Button onClickFn={onClickReverse}>戻す</Button>
+              <Button onClickFn={() => onClickReverse(index)}>戻す</Button>
             </div>
           </li>
         ))}
