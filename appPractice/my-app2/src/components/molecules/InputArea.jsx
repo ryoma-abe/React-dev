@@ -4,7 +4,7 @@ import { useContext, useState } from "react";
 import { ListContext } from "../../provider/ListProvider";
 
 export const InputArea = () => {
-  const [inputText, setInputText] = useState("テキスト");
+  const [inputText, setInputText] = useState("");
   const onChangeInputText = (e) => {
     setInputText(e.target.value);
   };
