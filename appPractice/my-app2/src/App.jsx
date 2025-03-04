@@ -12,7 +12,6 @@ export const App = () => {
         <InputArea />
         <ButtonArea />
         <IncompleteTodoList />
-        <h3 className="mt-10">完了のTodoエリアです</h3>
         <CompleteTodoList />
       </Default>
     </ListProvider>
