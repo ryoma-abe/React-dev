@@ -1,12 +1,83 @@
-# React + Vite
+# Axios 学習サンプル
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+このプロジェクトは React アプリケーションで Axios を使用して HTTP リクエストを行う基本的な使い方を示しています。
 
-Currently, two official plugins are available:
+## 概要
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+このシンプルな React アプリケーションは以下の方法を示しています：
 
-## Expanding the ESLint configuration
+- Axios を使用して外部 API に GET リクエストを送信する
+- API レスポンスを処理してコンソールにデータをログ出力する
+- 全ユーザーの取得と、ID によるユーザーのフィルタリング
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## コード例
+
+メインコンポーネントには、異なる Axios リクエストをトリガーする 2 つのボタンが含まれています：
+
+```jsx
+import "./App.css";
+import axios from "axios";
+
+function App() {
+  const onClickUsers = () => {
+    axios.get("https://jsonplaceholder.typicode.com/users").then((r) => {
+      console.log(r.data);
+    });
+  };
+
+  const onClickUser1 = () => {
+    axios.get("https://jsonplaceholder.typicode.com/users?id=1").then((r) => {
+      console.log(r.data);
+    });
+  };
+
+  return (
+    <>
+      <button onClick={onClickUsers}>users</button>
+      <button onClick={onClickUser1}>id=1</button>
+    </>
+  );
+}
+
+export default App;
+```
+
+## 機能
+
+- **全ユーザーの取得**: JSONPlaceholder API から全ユーザー情報を取得
+- **単一ユーザーの取得**: クエリパラメータを使用して ID=1 の特定のユーザーを取得
+
+## 使用している API
+
+このサンプルでは[JSONPlaceholder](https://jsonplaceholder.typicode.com/)を使用しています。これはテストやプロトタイピング用の無料のフェイク API です。
+
+## 使い方
+
+1. 依存関係をインストール：
+
+   ```
+   npm install axios
+   ```
+
+2. アプリケーションの実行：
+
+   ```
+   npm start
+   ```
+
+3. ボタンをクリックして、ブラウザのコンソールで API レスポンスを確認してください。
+
+## 次のステップ
+
+このサンプルをさらに発展させるためには：
+
+- エラーハンドリングの追加
+- POST、PUT、DELETE リクエストの実装
+- コンソールにログ出力するだけでなく、UI にデータを表示する
+- リクエスト中のローディング状態の追加
+
+## 参考リンク
+
+- [Axios ドキュメント](https://axios-http.com/docs/intro)
+- [React ドキュメント](https://react.dev/)
+- [JSONPlaceholder](https://jsonplaceholder.typicode.com/)
