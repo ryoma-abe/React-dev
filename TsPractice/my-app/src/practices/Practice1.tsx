@@ -1,13 +1,14 @@
-export const Practice1 = () => {
-  const getTotalFee = (num: number): number => {
-    const total: number = num * 1.1;
-    return total;
-  };
+import axios from "axios";
 
-  const onClickPractice = () => console.log(getTotalFee(1000));
+export const Practice1 = () => {
+  const onClickFetchDate = () => {
+    axios.get("https://jsonplaceholder.typicode.com/todos").then((r) => {
+      console.log(r.data);
+    });
+  };
   return (
     <>
-      <button onClick={onClickPractice}>練習問題を実行</button>
+      <button onClick={onClickFetchDate}>データを取得</button>
     </>
   );
 };
