@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { Todo } from "../Todo";
 import { TodoType } from "../types/todo";
+import { Text } from "../Text";
 
 export const Practice1 = () => {
   const [todos, setTodos] = useState<Array<TodoType>>([]);
@@ -23,6 +24,7 @@ export const Practice1 = () => {
           completed={todo.completed}
         />
       ))}
+      <Text color="red" fontSize="18px" />
     </>
   );
 };
