@@ -3,6 +3,8 @@ import { useState } from "react";
 import { Todo } from "../Todo";
 import { TodoType } from "../types/todo";
 import { Text } from "../Text";
+import { UserProfile } from "../UserProfile";
+import { User } from "../types/User";
 
 export const Practice1 = () => {
   const [todos, setTodos] = useState<Array<TodoType>>([]);
@@ -12,6 +14,10 @@ export const Practice1 = () => {
       .then((r) => {
         setTodos(r.data);
       });
+  };
+  const user: User = {
+    name: "じゃけえ",
+    hobbies: ["映画", "ゲーム"],
   };
   return (
     <>
@@ -25,6 +31,7 @@ export const Practice1 = () => {
         />
       ))}
       <Text color="red" fontSize="18px" />
+      <UserProfile user={user} />
     </>
   );
 };
