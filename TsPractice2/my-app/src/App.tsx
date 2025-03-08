@@ -1,17 +1,17 @@
-import { useState } from "react";
 import "./App.css";
+import { Button } from "./Button";
+import { Display } from "./Display";
+import { useState } from "react";
 
 function App() {
-  const [count, setCount] = useState(0);
-  const onclickAdd = () => {
+  const [count, setCount] = useState<number>(1);
+  const onClickAdd = () => {
     setCount(count + 1);
   };
   return (
     <>
-      <p className="text-center text-3xl p-10">{count}</p>
-      <button onClick={onclickAdd} className="p-5 m-10 border">
-        カウントアップ
-      </button>
+      <Display count={count} />
+      <Button onClickAdd={onClickAdd} />
     </>
   );
 }
