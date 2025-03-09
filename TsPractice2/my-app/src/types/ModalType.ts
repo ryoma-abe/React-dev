@@ -1,3 +1,3 @@
 export type ModalType = {
-  onClickToggle: () => boolean;
+  onClickToggle: () => void;
 };
