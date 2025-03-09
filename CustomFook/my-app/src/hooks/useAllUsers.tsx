@@ -29,11 +29,11 @@ export const useAllUsers = () => {
       .finally(() => {
         setLoading(false);
       });
-    return {
-      getUsers,
-      userProfile,
-      loading,
-      error,
-    };
+  };
+  return {
+    getUsers,
+    userProfile,
+    loading,
+    error,
   };
 };
