@@ -1,17 +1,15 @@
 import { BrowserRouter } from "react-router-dom";
 
 import "./App.css";
-import { Header } from "./components/oganisms/loyout/Header";
 import { Router } from "./router/Router";
+import { HeaderLoyout } from "./template/HeaderLoyout";
 
 function App() {
   return (
     <>
       <BrowserRouter>
-        <Header />
-        <main className="max-w-3xl mx-auto py-3">
-          <Router />
-        </main>
+        <HeaderLoyout />
+        <Router />
       </BrowserRouter>
     </>
   );
