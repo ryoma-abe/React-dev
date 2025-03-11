@@ -11,8 +11,8 @@ export const Header = () => {
   return (
     <header className="bg-gray-100 p-4 shadow-md">
       {/* モバイル用のハンバーガーメニュー表示/非表示ボタン */}
+      <div className="text-lg font-bold">ユーザー管理アプリ</div>
       <div className="flex justify-between items-center md:hidden">
-        <div className="text-lg font-bold">サイト名</div>
         <button onClick={toggleMenu} className="p-2 rounded hover:bg-gray-200">
           {menuOpen ? (
             <svg
