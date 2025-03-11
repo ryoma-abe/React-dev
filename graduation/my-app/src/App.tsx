@@ -1,10 +1,18 @@
+import { BrowserRouter } from "react-router-dom";
+
 import "./App.css";
+import { Header } from "./components/Header";
+import { Router } from "./router/Router";
 
 function App() {
   return (
     <>
-      <h1 className="text-5xl">こんにちは世界</h1>
-      <button className="btn">aa</button>
+      <BrowserRouter>
+        <Header />
+        <main className="max-w-3xl mx-auto py-3">
+          <Router />
+        </main>
+      </BrowserRouter>
     </>
   );
 }
