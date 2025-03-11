@@ -3,6 +3,7 @@ import { Home } from "../components/pages/Home";
 import { Login } from "../components/pages/Login";
 import { Setting } from "../components/pages/Setting";
 import { UserManagement } from "../components/pages/UserManagement";
+import { Page404 } from "../components/pages/Page404";
 
 export const Router = () => {
   return (
@@ -12,6 +13,7 @@ export const Router = () => {
         <Route path="setting" element={<Setting />} />
         <Route path="userManagement" element={<UserManagement />} />
       </Route>
+      <Route path="*" element={<Page404 />} />
     </Routes>
   );
 };
