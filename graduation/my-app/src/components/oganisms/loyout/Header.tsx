@@ -12,12 +12,11 @@ export const Header = () => {
   return (
     <header className="bg-gray-100 p-4 shadow-md">
       {/* モバイル用のハンバーガーメニュー表示/非表示ボタン */}
-      <div className="text-lg font-bold">ユーザー管理アプリ</div>
-      <MenuButton toggleMenu={toggleMenu} menuOpen={menuOpen} />
-
-      {/* モバイル用のメニュー（開閉可能） */}
-      <nav
-        className={`
+      <div className="flex justify-between items-center">
+        <div className="text-lg font-bold">ユーザー管理アプリ</div>
+        <MenuButton toggleMenu={toggleMenu} menuOpen={menuOpen} />
+        <nav
+          className={`
         flex 
         flex-col 
         gap-2 
@@ -28,32 +27,33 @@ export const Header = () => {
         md:mt-0
         ${menuOpen ? "block" : "hidden md:flex"}
       `}
-      >
-        <Link
-          to="/"
-          className="px-3 py-2 hover:bg-gray-200 rounded text-center"
         >
-          ログイン
-        </Link>
-        <Link
-          to="/home"
-          className="px-3 py-2 hover:bg-gray-200 rounded text-center"
-        >
-          ホーム
-        </Link>
-        <Link
-          to="/home/setting"
-          className="px-3 py-2 hover:bg-gray-200 rounded text-center"
-        >
-          設定
-        </Link>
-        <Link
-          to="/home/userManagement"
-          className="px-3 py-2 hover:bg-gray-200 rounded text-center"
-        >
-          ユーザー
-        </Link>
-      </nav>
+          <Link
+            to="/"
+            className="px-3 py-2 hover:bg-gray-200 rounded text-center"
+          >
+            ログイン
+          </Link>
+          <Link
+            to="/home"
+            className="px-3 py-2 hover:bg-gray-200 rounded text-center"
+          >
+            ホーム
+          </Link>
+          <Link
+            to="/home/setting"
+            className="px-3 py-2 hover:bg-gray-200 rounded text-center"
+          >
+            設定
+          </Link>
+          <Link
+            to="/home/userManagement"
+            className="px-3 py-2 hover:bg-gray-200 rounded text-center"
+          >
+            ユーザー
+          </Link>
+        </nav>
+      </div>
     </header>
   );
 };
