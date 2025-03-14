@@ -1,8 +1,12 @@
-import { FC, memo } from "react";
+import { ChangeEvent, FC, memo, useState } from "react";
 import { PrimaryButton } from "../atoms/button/PrimaryButton";
 import { Input } from "../atoms/button/Input";
 
 export const Login: FC = memo(() => {
+  const [userId, setUserId] = useState("");
+  const onChangeUserId = (e:ChangeEvent<HTMLInputElement>) => {
+    setUserId(e.target.value);
+  };
   return (
     <div className="flex items-center justify-center h-full">
       <div className="w-fit mx-auto px-20 py-10 shadow-sm rounded-xl bg-white">
@@ -11,7 +15,11 @@ export const Login: FC = memo(() => {
         </h2>
         <div className="mt-4 space-y-4">
           <div>
-            <Input placeholder={"ユーザーID"} />
+            <Input
+              placeholder={"ユーザーID"}
+              value={userId}
+              onChange={onChangeUserId}
+            />
           </div>
           <div>
             <PrimaryButton>ログイン</PrimaryButton>
