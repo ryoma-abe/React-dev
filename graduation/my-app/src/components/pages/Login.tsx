@@ -10,6 +10,13 @@ export const Login: FC = memo(() => {
     setUserId(e.target.value);
   };
   const onClickLogin = () => login(userId);
+  const disabledFlg = () => {
+    if (userId) {
+      return false;
+    } else {
+      return true;
+    }
+  };
   return (
     <div className="flex items-center justify-center h-full">
       <div className="w-fit mx-auto px-20 py-10 shadow-sm rounded-xl bg-white">
@@ -25,7 +32,9 @@ export const Login: FC = memo(() => {
             />
           </div>
           <div>
-            <PrimaryButton onClick={onClickLogin}>ログイン</PrimaryButton>
+            <PrimaryButton onClick={onClickLogin} disabled={disabledFlg()}>
+              ログイン
+            </PrimaryButton>
           </div>
         </div>
       </div>
