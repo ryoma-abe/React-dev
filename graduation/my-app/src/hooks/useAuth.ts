@@ -12,7 +12,9 @@ export const useAuth = () => {
       axios
         .get<User>(`https://jsonplaceholder.typicode.com/users/${id}`)
         .then((res) => {
-          if (res.data) {
+          if (res.data && !Array.isArray(res.data)) {
+            console.log(res.data);
+
             navigate("/home");
           } else {
             alert("ユーザーが見つかりません");
