@@ -1,12 +1,15 @@
 import { ChangeEvent, FC, memo, useState } from "react";
 import { PrimaryButton } from "../atoms/button/PrimaryButton";
 import { Input } from "../atoms/button/Input";
+import { useAuth } from "../../hooks/useAuth";
 
 export const Login: FC = memo(() => {
   const [userId, setUserId] = useState("");
-  const onChangeUserId = (e:ChangeEvent<HTMLInputElement>) => {
+  const { login } = useAuth();
+  const onChangeUserId = (e: ChangeEvent<HTMLInputElement>) => {
     setUserId(e.target.value);
   };
+  const onClickLogin = () => login(userId);
   return (
     <div className="flex items-center justify-center h-full">
       <div className="w-fit mx-auto px-20 py-10 shadow-sm rounded-xl bg-white">
@@ -22,7 +25,7 @@ export const Login: FC = memo(() => {
             />
           </div>
           <div>
-            <PrimaryButton>ログイン</PrimaryButton>
+            <PrimaryButton onClick={onClickLogin}>ログイン</PrimaryButton>
           </div>
         </div>
       </div>
