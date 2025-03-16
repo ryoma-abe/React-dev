@@ -2,10 +2,11 @@ import { ChangeEvent, FC, memo, useState } from "react";
 import { PrimaryButton } from "../atoms/button/PrimaryButton";
 import { Input } from "../atoms/button/Input";
 import { useAuth } from "../../hooks/useAuth";
+import { Toast } from "../atoms/Toast";
 
 export const Login: FC = memo(() => {
   const [userId, setUserId] = useState("");
-  const { login } = useAuth();
+  const { login, showToast } = useAuth();
   const onChangeUserId = (e: ChangeEvent<HTMLInputElement>) => {
     setUserId(e.target.value);
   };
@@ -38,6 +39,7 @@ export const Login: FC = memo(() => {
           </div>
         </div>
       </div>
+      {showToast || <Toast message="ログイン出来ませんでした" />}
     </div>
   );
 });

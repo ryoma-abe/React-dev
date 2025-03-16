@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 export const useAuth = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [showToast, setShowToast] = useState(false);
+
   const login = useCallback(
     (id: string) => {
       setLoading(true);
@@ -17,7 +19,8 @@ export const useAuth = () => {
 
             navigate("/home");
           } else {
-            alert("ユーザーが見つかりません");
+            setShowToast(true);
+            setTimeout(() => setShowToast(false), 3000);
           }
         })
         .catch(() => {
@@ -29,5 +32,5 @@ export const useAuth = () => {
     },
     [navigate]
   );
-  return { login, loading };
+  return { login, loading, showToast };
 };
