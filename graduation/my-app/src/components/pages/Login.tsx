@@ -40,7 +40,9 @@ export const Login: FC = memo(() => {
           </div>
         </div>
       </div>
-      {showToast && <Toast message="ログイン出来ませんでした" />}
+      {showToast && (
+        <Toast message="ログイン出来ませんでした" howSuccess={false} />
+      )}
     </div>
   );
 });
