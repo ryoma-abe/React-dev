@@ -15,16 +15,16 @@ export const useAuth = () => {
         .get<User>(`https://jsonplaceholder.typicode.com/users/${id}`)
         .then((res) => {
           if (res.data && !Array.isArray(res.data)) {
-            console.log(res.data);
-
             navigate("/home");
           } else {
-            setShowToast(true);
-            setTimeout(() => setShowToast(false), 3000);
+            alert();
           }
         })
         .catch(() => {
-          alert("ログイン出来ません");
+          setShowToast(true);
+          setTimeout(() => {
+            setShowToast(false);
+          }, 2000);
         })
         .finally(() => {
           setLoading(false);
