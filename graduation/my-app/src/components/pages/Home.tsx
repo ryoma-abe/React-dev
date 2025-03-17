@@ -18,7 +18,7 @@ export const Home: FC = memo(() => {
 
   return (
     <div>
-      {showToast && <Toast message="ログインしました" />}
+      {showToast && <Toast message="ログインしました" howSuccess={true} />}
       <Outlet />
     </div>
   );
