@@ -11,6 +11,7 @@ export const Login: FC = memo(() => {
     setUserId(e.target.value);
   };
   const onClickLogin = () => login(userId);
+
   const disabledFlg = () => {
     if (userId) {
       return false;
@@ -39,7 +40,7 @@ export const Login: FC = memo(() => {
           </div>
         </div>
       </div>
-      {showToast || <Toast message="ログイン出来ませんでした" />}
+      {showToast && <Toast message="ログイン出来ませんでした" />}
     </div>
   );
 });
