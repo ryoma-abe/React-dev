@@ -8,7 +8,7 @@ export const Modal: FC<modalProps> = ({ modalToggle }) => {
     <>
       <div
         onClick={modalToggle}
-        className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+        className="fixed inset-0 bg-black/70 flex items-center justify-center z-50"
       >
         <div className="bg-white rounded-lg shadow-xl w-11/12 max-w-md md:max-w-xl mx-auto overflow-hidden">
           <div className="flex justify-between items-center border-b px-6 py-4">
