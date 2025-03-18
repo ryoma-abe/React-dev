@@ -1,6 +1,7 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import { useAllUsers } from "../../hooks/useAllUsers";
 import { Spinner } from "../atoms/Spinner";
+import { Modal } from "../atoms/Modal";
 type userCardProps = {
   imgUrl: string;
 };
@@ -8,6 +9,8 @@ type userCardProps = {
 export const UserCard: FC<userCardProps> = ({ imgUrl }) => {
   const { getUsers, loading, users } = useAllUsers();
   useEffect(() => getUsers(), []);
+  const [modal, setModal] = useState(false);
+  const modalToggle = () => setModal(!modal);
   return (
     <>
       {loading ? (
@@ -17,7 +20,10 @@ export const UserCard: FC<userCardProps> = ({ imgUrl }) => {
       ) : (
         <div className="grid lg:grid-cols-3 gap-2 md:grid-cols-2 grid-cols-1">
           {users?.map((user) => (
-            <div className="bg-white p-4 rounded shadow-md">
+            <div
+              onClick={modalToggle}
+              className="bg-white p-4 rounded shadow-md"
+            >
               <img
                 src={imgUrl}
                 alt={user.name}
@@ -31,6 +37,7 @@ export const UserCard: FC<userCardProps> = ({ imgUrl }) => {
           ))}
         </div>
       )}
+      {modal && <Modal modalToggle={modalToggle} />}
     </>
   );
 };
