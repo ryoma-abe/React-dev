@@ -43,7 +43,7 @@ export const UserManagement: FC = memo(() => {
           ))}
         </div>
       )}
-      {modal && <Modal modalToggle={closeModal} />}
+      {modal && <Modal modalToggle={closeModal} user={selectedUser} />}
     </>
   );
 });
