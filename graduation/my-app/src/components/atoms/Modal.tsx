@@ -6,14 +6,14 @@ type modalProps = {
 export const Modal: FC<modalProps> = ({ modalToggle }) => {
   return (
     <>
-      <div
-        onClick={modalToggle}
-        className="fixed inset-0 bg-black/70 flex items-center justify-center z-50"
-      >
+      <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
         <div className="bg-white rounded-lg shadow-xl w-11/12 max-w-md md:max-w-xl mx-auto overflow-hidden">
           <div className="flex justify-between items-center px-6 py-4">
             <h3 className="text-lg font-medium text-gray-900">タイトル</h3>
-            <button className="text-gray-400 hover:text-gray-500 focus:outline-none">
+            <button
+              onClick={modalToggle}
+              className="text-gray-400 hover:text-gray-500 focus:outline-none"
+            >
               <svg
                 className="h-6 w-6"
                 fill="none"
@@ -60,9 +60,7 @@ export const Modal: FC<modalProps> = ({ modalToggle }) => {
             />
           </div>
           <div className="px-6 py-4">
-            <p className="text-sm font-medium text-gray-700 mb-2">
-              TEL
-            </p>
+            <p className="text-sm font-medium text-gray-700 mb-2">TEL</p>
             <input
               type="text"
               value="テスト"
