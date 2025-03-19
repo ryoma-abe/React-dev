@@ -12,8 +12,10 @@ export const UserManagement: FC = memo(() => {
   const [modal, setModal] = useState(false);
 
   const openModal = (id: number) => {
-    onSelectUser({ id, users });
-    setModal(true);
+    if (users) {
+      onSelectUser({ id, users });
+      setModal(true);
+    }
   };
 
   const closeModal = () => {
