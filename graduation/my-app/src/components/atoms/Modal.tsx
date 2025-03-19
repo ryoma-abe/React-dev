@@ -1,9 +1,11 @@
 import { FC } from "react";
+import { User } from "../../types/api/user";
 
 type modalProps = {
+  user: User | null;
   modalToggle: () => void;
 };
-export const Modal: FC<modalProps> = ({ modalToggle }) => {
+export const Modal: FC<modalProps> = ({ modalToggle, user }) => {
   return (
     <>
       <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
@@ -34,7 +36,7 @@ export const Modal: FC<modalProps> = ({ modalToggle }) => {
             <p className="text-sm font-medium text-gray-700 mb-2">名前</p>
             <input
               type="text"
-              value="テスト"
+              value={user?.name}
               readOnly
               className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
             />
@@ -43,7 +45,7 @@ export const Modal: FC<modalProps> = ({ modalToggle }) => {
             <p className="text-sm font-medium text-gray-700 mb-2">フルネーム</p>
             <input
               type="text"
-              value="テスト"
+              value={user?.name}
               readOnly
               className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
             />
@@ -54,7 +56,7 @@ export const Modal: FC<modalProps> = ({ modalToggle }) => {
             </p>
             <input
               type="text"
-              value="テスト"
+              value={user?.email}
               readOnly
               className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
             />
@@ -63,7 +65,7 @@ export const Modal: FC<modalProps> = ({ modalToggle }) => {
             <p className="text-sm font-medium text-gray-700 mb-2">TEL</p>
             <input
               type="text"
-              value="テスト"
+              value={user?.phone}
               readOnly
               className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
             />
