@@ -1,16 +1,24 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect } from "react";
 import { useAllUsers } from "../../hooks/useAllUsers";
 import { Spinner } from "../atoms/Spinner";
-import { Modal } from "../atoms/Modal";
 type userCardProps = {
+  id: number;
   imgUrl: string;
+  userName: string;
+  fullName: string;
+  onClick: (id: number) => void;
 };
 
-export const UserCard: FC<userCardProps> = ({ imgUrl }) => {
+export const UserCard: FC<userCardProps> = ({
+  id,
+  imgUrl,
+  userName,
+  fullName,
+  onClick,
+}) => {
   const { getUsers, loading, users } = useAllUsers();
   useEffect(() => getUsers(), []);
-  const [modal, setModal] = useState(false);
-  const modalToggle = () => setModal(!modal);
+
   return (
     <>
       {loading ? (
@@ -21,7 +29,7 @@ export const UserCard: FC<userCardProps> = ({ imgUrl }) => {
         <div className="grid lg:grid-cols-3 gap-2 md:grid-cols-2 grid-cols-1">
           {users?.map((user) => (
             <div
-              onClick={modalToggle}
+              onClick={() => onClick(id)}
               className="bg-white p-4 rounded shadow-md"
             >
               <img
@@ -31,13 +39,12 @@ export const UserCard: FC<userCardProps> = ({ imgUrl }) => {
                 height="300px"
                 className="w-30 h-30 rounded-full mx-auto mb-2"
               />
-              <h3 className="text-lg font-semibold text-center">{user.name}</h3>
-              <p className="text-gray-600 text-center">{user.email}</p>
+              <h3 className="text-lg font-semibold text-center">{userName}</h3>
+              <p className="text-gray-600 text-center">{fullName}</p>
             </div>
           ))}
         </div>
       )}
-      {modal && <Modal modalToggle={modalToggle} />}
     </>
   );
 };
