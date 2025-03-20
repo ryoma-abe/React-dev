@@ -4,8 +4,9 @@ import { User } from "../../types/api/user";
 type modalProps = {
   user: User | null;
   modalToggle: () => void;
+  edit: boolean;
 };
-export const Modal: FC<modalProps> = ({ modalToggle, user }) => {
+export const Modal: FC<modalProps> = ({ modalToggle, user, edit }) => {
   return (
     <>
       <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
@@ -37,7 +38,7 @@ export const Modal: FC<modalProps> = ({ modalToggle, user }) => {
             <input
               type="text"
               value={user?.name}
-              readOnly
+              readOnly={edit ? undefined : true}
               className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
@@ -46,7 +47,7 @@ export const Modal: FC<modalProps> = ({ modalToggle, user }) => {
             <input
               type="text"
               value={user?.name}
-              readOnly
+              readOnly={edit ? undefined : true}
               className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
@@ -57,7 +58,7 @@ export const Modal: FC<modalProps> = ({ modalToggle, user }) => {
             <input
               type="text"
               value={user?.email}
-              readOnly
+              readOnly={edit ? undefined : true}
               className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
@@ -66,7 +67,7 @@ export const Modal: FC<modalProps> = ({ modalToggle, user }) => {
             <input
               type="text"
               value={user?.phone}
-              readOnly
+              readOnly={edit ? undefined : true}
               className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
@@ -84,6 +85,7 @@ export const Modal: FC<modalProps> = ({ modalToggle, user }) => {
             >
               OK
             </button>
+            {edit && <button>編集</button>}
           </div>
         </div>
       </div>

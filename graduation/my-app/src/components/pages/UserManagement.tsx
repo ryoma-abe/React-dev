@@ -11,7 +11,6 @@ export const UserManagement: FC = memo(() => {
   const { onSelectUser, selectedUser } = useSelectUser();
   const [modal, setModal] = useState(false);
   const { loginUser } = useLoginUser();
-  console.log(loginUser);
 
   const openModal = (id: number) => {
     if (users) {
@@ -23,6 +22,8 @@ export const UserManagement: FC = memo(() => {
   const closeModal = () => {
     setModal(false);
   };
+
+  const edit = loginUser?.id == 10 ? true : false;
 
   useEffect(() => getUsers(), [getUsers]);
 
@@ -47,7 +48,9 @@ export const UserManagement: FC = memo(() => {
           ))}
         </div>
       )}
-      {modal && <Modal modalToggle={closeModal} user={selectedUser} />}
+      {modal && (
+        <Modal modalToggle={closeModal} user={selectedUser} edit={edit} />
+      )}
     </>
   );
 });
