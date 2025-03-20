@@ -4,12 +4,14 @@ import { Modal } from "../atoms/Modal";
 import { Spinner } from "../atoms/Spinner";
 import { useAllUsers } from "../../hooks/useAllUsers";
 import { useSelectUser } from "../../hooks/useSelectUser";
+import { useLoginUser } from "../../hooks/useLoginUser";
 
 export const UserManagement: FC = memo(() => {
   const { loading, users, getUsers } = useAllUsers();
   const { onSelectUser, selectedUser } = useSelectUser();
-  console.log(selectedUser);
   const [modal, setModal] = useState(false);
+  const { loginUser } = useLoginUser();
+  console.log(loginUser);
 
   const openModal = (id: number) => {
     if (users) {

@@ -18,9 +18,7 @@ export const Home: FC = memo(() => {
 
   return (
     <div>
-      {showToast && window.location.pathname === "/home" && (
-        <Toast message="ログインしました" howSuccess={true} />
-      )}
+      {showToast && <Toast message="ログインしました" howSuccess={true} />}
       <Outlet />
     </div>
   );
